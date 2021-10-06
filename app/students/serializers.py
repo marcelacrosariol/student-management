@@ -16,6 +16,7 @@ class StudentListSerializer(ModelSerializer):
             'name',
             'family_name',
             'gender',
+            'birthday',
             'student_id',
             'status',
         )
