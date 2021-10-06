@@ -11,8 +11,6 @@ RUN mkdir /app
 COPY ./app /app
 WORKDIR /app
 
-RUN python manage.py collectstatic --noinput
-
 # evitar o uso de um usuário com privilégios de root
 RUN adduser -D user
 USER user
