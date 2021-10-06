@@ -1,16 +1,18 @@
 # student-management
 
-Projeto com finalidade de implementar api que seja capaz de armazenar dados e editar dados de um estudantes no sistema.
+Projeto com finalidade de implementar API que seja capaz de armazenar dados e editar dados de um estudantes no sistema.
 
 # Table of contents
 1. [Tecnologias](#technologies)
 2. [Estrutura do Projeto](#project_structure)
-3. [Setup Local](#localsetup)
-4. [Execução](#project_run)
-5. [Endpoints](#endpoints)
+3. [Estrutura do Banco](#database_structure)
+4. [Setup Local](#localsetup)
+5. [Execução](#project_run)
+6. [Endpoints](#endpoints)
     - [Lista de estudantes](#students_list)
     - [Criar estudante](#student_create)
-6. [Execução dos Testes](#tests)
+    - [Editar ou deletar estudante](#student_update_or_destroy)
+7. [Execução dos Testes](#tests)
 
 ## Tecnologias <a name="technologies"></a>
     - Docker
@@ -25,7 +27,8 @@ Projeto com finalidade de implementar api que seja capaz de armazenar dados e ed
 3. Módulo referente aos estudantes
 4. Arquivos de configuração do docker
 
-## Estrutura do Banco <a name="project_structure"></a>
+## Estrutura do Banco <a name="database_structure"></a>
+![Estrutura do banco](https://github.com/marcelacrosariol/student-management/blob/main/docs/estrutura_banco.png)
 
 
 ## Setup Local<a name="localsetup"></a>
@@ -51,7 +54,7 @@ $ docker-compose build
 4. Execute as migrações para criar e preparar o banco de dados.
 
 ```shell
-$ docker exec -it fpso-management-main_app_1 ./manage.py migrate
+$ docker exec -it student-management-main_app_1 ./manage.py migrate
 ```
 
 ## Execução <a name="project_run"></a>
@@ -146,6 +149,46 @@ docker-compose up
    ]
 }
 ```
+-------------------------------------------------------------------------------
+### `/students/<id>/` <a name="student_update_or_destroy"></a>
+<_Edita ou deleta estudante_>
+
+**Método** : `PUT`
+
+**Exemplo de Dado de Entrada**
+
+```json
+{
+   "name":"Marcela",
+   "family_name":"Crosariol",
+   "birthday":"1994-09-28",
+   "student_id":"2021010001RJ"
+}
+```
+
+### Exemplo de Requisição Bem Sucedida
+
+**Code** : `200 OK`
+
+**Content example**
+
+```json
+{
+    "name": "Marcela",
+    "family_name": "Crosariol",
+    "birthday": "1994-09-28",
+    "gender": 0,
+    "student_id": "2021010001RJ",
+    "status": 1
+}
+```
+
+**Método** : `DELETE`
+
+### Exemplo de Requisição Bem Sucedida
+
+**Code** : `204 No Content`
+
 -------------------------------------------------------------------------------
 
 ## Execução dos Testes <a name="tests"></a>
